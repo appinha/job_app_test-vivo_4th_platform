@@ -1,0 +1,1 @@
+curl -X POST -d @list.json http://localhost:5000/post -H "Content-Type: application/json"
