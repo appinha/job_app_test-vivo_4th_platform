@@ -1,90 +1,109 @@
 import pandas as pd
 import numpy as np
+import json
 from datetime import timedelta
 
-log_file = "corrida.log"
 
-# Read log file and put it into pandas dataframe
-df_log = pd.read_csv(log_file, delimiter=';')
+def get_race_res(log_file):
 
-# List all unique super-hero codes and names
-code_name_unique = df_log['Super-Heroi'].unique()
+	# Read log file and put it into pandas dataframe
+	df_log = pd.read_csv(log_file, delimiter=';')
 
-# Split code_name_unique into two (to separate code from name)
-code_unique = []
-name_unique = []
-for unique in code_name_unique:
-	a, b = map(str, unique.split('–'))
-	code_unique.append(a)
-	name_unique.append(b)
+	# List all unique super-hero codes and names
+	code_name_unique = df_log['Super-Heroi'].unique()
 
-# Function to convert string with time to seconds in float
-def time_sum(lst):
-	mins, secs = map(float, lst.split(':'))
-	td = timedelta(minutes=mins, seconds=secs)
-	return td.total_seconds()
+	# Split code_name_unique into two (to separate code from name)
+	code_unique = []
+	name_unique = []
+	for unique in code_name_unique:
+		a, b = map(str, unique.split('–'))
+		code_unique.append(a)
+		name_unique.append(b)
 
-# Get total race time and best lap time for each super-hero
-total_race_time = []
-best_lap_time = []
-best_lap_time_nbr = []
-for code in code_name_unique:
-	# Filter dataframe per super-hero code (row) and lap time (column)
-	df_filt_time = df_log['Tempo Volta'].loc[df_log['Super-Heroi'] == code]
-	# Convert string with time to seconds in float
-	df_filt_time = df_filt_time.apply(time_sum)
-	# Find best lap time (bonus)
-	best_lap_time.append(df_filt_time.min())
-	# Get number of best lap time (bonus)
-	blt_index = df_filt_time[df_filt_time == df_filt_time.min()].index[0]
-	best_lap_time_nbr.append(df_log['Nº Volta'].iloc[blt_index])
-	# Populate list with sum of lap times
-	total_race_time.append(df_filt_time.sum())
+	# Function to convert string with time to seconds in float
+	def time_sum(lst):
+		mins, secs = map(float, lst.split(':'))
+		td = timedelta(minutes=mins, seconds=secs)
+		return td.total_seconds()
 
-# Find best lap time of all super-heros (bonus)
-best_lap_time_all_name = name_unique[best_lap_time.index(min(best_lap_time))]
+	# Get total race time and best lap time for each super-hero
+	total_race_time = []
+	best_lap_time = []
+	best_lap_time_nbr = []
+	for code in code_name_unique:
+		# Filter dataframe per super-hero code (row) and lap time (column)
+		df_filt_time = df_log['Tempo Volta'].loc[df_log['Super-Heroi'] == code]
+		# Convert string with time to seconds in float
+		df_filt_time = df_filt_time.apply(time_sum)
+		# Find best lap time (bonus)
+		best_lap_time.append(df_filt_time.min())
+		# Get number of best lap time (bonus)
+		blt_index = df_filt_time[df_filt_time == df_filt_time.min()].index[0]
+		best_lap_time_nbr.append(df_log['Nº Volta'].iloc[blt_index])
+		# Populate list with sum of lap times
+		total_race_time.append(df_filt_time.sum())
 
-# Get average speed for each super-hero
-avg_speed = []
-code = 0
-for code in code_name_unique:
-	# Filter dataframe per super-hero code (row) and lap average speed (column)
-	df_filt_speed = df_log['Velocidade média da volta'].loc[df_log['Super-Heroi'] == code]
-	# Replace comma for point in string list, then convert to float
-	speeds_f = []
-	for s in df_filt_speed:
-		speeds_f.append(float(s.replace(',', '.')))
-	# Calculate average of list with lap average speeds
-	avg_speed.append(sum(speeds_f) / len(speeds_f))
+	# Find best lap time of all super-heros (bonus)
+	best_lap_time_all_name = name_unique[best_lap_time.index(min(best_lap_time))]
 
-# Get total laps for each super-hero
-df_counts = df_log['Super-Heroi'].value_counts()
+	# Get average speed for each super-hero
+	avg_speed = []
+	code = 0
+	for code in code_name_unique:
+		# Filter dataframe per super-hero code (row) and lap average speed (column)
+		df_filt_speed = df_log['Velocidade média da volta'].loc[df_log['Super-Heroi'] == code]
+		# Replace comma for point in string list, then convert to float
+		speeds_f = []
+		for s in df_filt_speed:
+			speeds_f.append(float(s.replace(',', '.')))
+		# Calculate average of list with lap average speeds
+		avg_speed.append(sum(speeds_f) / len(speeds_f))
 
-# Create index with unique super-hero codes for race results dataframe
-idx = pd.Index(code_name_unique, name='ID')
+	# Get total laps for each super-hero
+	df_counts = df_log['Super-Heroi'].value_counts()
 
-# Create dict with calculated race results
-data = {'Codigo': code_unique, \
-		'Super-Heroi': name_unique, \
-		'Qtd Voltas': df_counts, \
-		'Tempo Total (s)': total_race_time, \
-		'Melhor Volta': best_lap_time_nbr, \
-		'Tempo Melhor Volta (s)': best_lap_time, \
-		'Velocidade média': avg_speed}
+	# Create index with unique super-hero codes for race results dataframe
+	idx = pd.Index(code_name_unique, name='ID')
 
-# Unite index and data dict to create race results dataframe
-df_res = pd.DataFrame(data, index=idx)
+	# Create dict with calculated race results
+	data = {'Codigo': code_unique, \
+			'Super-Heroi': name_unique, \
+			'Qtd Voltas': df_counts, \
+			'Tempo Total (s)': total_race_time, \
+			'Melhor Volta': best_lap_time_nbr, \
+			'Tempo Melhor Volta (s)': best_lap_time, \
+			'Velocidade média': avg_speed}
 
-# Sort dataframe by position
-df_res = df_res.sort_values(by=['Tempo Total (s)'])
+	# Unite index and data dict to create race results dataframe
+	df_res = pd.DataFrame(data, index=idx)
 
-# Add column for finishing position
-df_res['Posicao Chegada'] = np.arange(1, len(code_name_unique) + 1)
+	# Sort dataframe by position
+	df_res = df_res.sort_values(by=['Tempo Total (s)'])
 
-print(df_res)
+	# Add column for finishing position
+	df_res['Posicao Chegada'] = np.arange(1, len(code_name_unique) + 1)
 
-best_lap_time_all = []
-best_lap_time_all.append(df_res['Codigo'].loc[df_res['Super-Heroi'] == best_lap_time_all_name].item())
-best_lap_time_all.append(best_lap_time_all_name)
-best_lap_time_all.append(df_res['Tempo Melhor Volta (s)'].loc[df_res['Super-Heroi'] == best_lap_time_all_name].item())
-print("\nMelhor volta da corrida:", best_lap_time_all)
+	# Populate dict with info of best lap time in race
+	# Info: super-hero code, name and best lap time
+	best_lap_time_all = []
+	best_lap_time_all.append(df_res['Codigo'].loc[df_res['Super-Heroi'] == best_lap_time_all_name].item())
+	best_lap_time_all.append(best_lap_time_all_name)
+	best_lap_time_all.append(df_res['Tempo Melhor Volta (s)'].loc[df_res['Super-Heroi'] == best_lap_time_all_name].item())
+	best_lap_time_all = {'Melhor volta da corrida': best_lap_time_all}
+
+	return df_res, best_lap_time_all
+
+
+def get_race_res_json(file):
+
+	# Get race results
+	df_res, best_lap_time_all = get_race_res(file)
+
+	# Convert race result dataframe to JSON dict
+	race_res = df_res.to_json(orient="split")
+	json_race_res = json.loads(race_res)
+
+	# Add best_lap_time_all dict to JSON dict
+	json_race_res.update(best_lap_time_all)
+
+	return json_race_res
