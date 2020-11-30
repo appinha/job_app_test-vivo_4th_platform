@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
-import json
 from datetime import timedelta
-
 
 def get_race_res(log_file):
 
@@ -20,7 +18,7 @@ def get_race_res(log_file):
 		code_unique.append(a)
 		name_unique.append(b)
 
-	# Function to convert string with time to seconds in float
+	# Function to convert string with time to in float representing seconds
 	def time_sum(lst):
 		mins, secs = map(float, lst.split(':'))
 		td = timedelta(minutes=mins, seconds=secs)
@@ -85,25 +83,12 @@ def get_race_res(log_file):
 
 	# Populate dict with info of best lap time in race
 	# Info: super-hero code, name and best lap time
-	best_lap_time_all = []
-	best_lap_time_all.append(df_res['Codigo'].loc[df_res['Super-Heroi'] == best_lap_time_all_name].item())
-	best_lap_time_all.append(best_lap_time_all_name)
-	best_lap_time_all.append(df_res['Tempo Melhor Volta (s)'].loc[df_res['Super-Heroi'] == best_lap_time_all_name].item())
-	best_lap_time_all = {'Melhor volta da corrida': best_lap_time_all}
+	best_lap = {
+		'Codigo': [df_res['Codigo'].loc[df_res['Super-Heroi'] == best_lap_time_all_name].item()], \
+		'Super-Heroi': [best_lap_time_all_name], \
+		'Tempo (s)': [df_res['Tempo Melhor Volta (s)'].loc[df_res['Super-Heroi'] == best_lap_time_all_name].item()]
+	}
+	df_best_lap = pd.DataFrame(best_lap)
+	df_best_lap = df_best_lap.set_index('Codigo')
 
-	return df_res, best_lap_time_all
-
-
-def get_race_res_json(file):
-
-	# Get race results
-	df_res, best_lap_time_all = get_race_res(file)
-
-	# Convert race result dataframe to JSON dict
-	race_res = df_res.to_json(orient="split")
-	json_race_res = json.loads(race_res)
-
-	# Add best_lap_time_all dict to JSON dict
-	json_race_res.update(best_lap_time_all)
-
-	return json_race_res
+	return df_res, df_best_lap
