@@ -4,7 +4,7 @@ from solution import *
 
 
 def test(i, M, N, a, low, high, v=False):
-	"""
+	'''
 		This function tests the count_arr_in_matrix() function.
 
 		It takes in six integers: test numbering (i), matrix dimensions (M, N),
@@ -19,7 +19,7 @@ def test(i, M, N, a, low, high, v=False):
 
 		There is no return value, the test result is simply printed in stdout.
 		Possible test results: "passed", "failed" and "invalid input".
-	"""
+	'''
 	random_array = np.random.randint(low, high, (1, a))
 	random_matrix = np.random.randint(low, high, (M, N))
 	control_array = np.arange(high - low)
