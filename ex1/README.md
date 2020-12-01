@@ -1,6 +1,6 @@
 # Exercise 1
 
-*Code an algorithm that counts how many times each element in a given array occurs in a given matrix.*
+*An algorithm that counts how many times each element in a given array occurs in a given matrix.*
 
 ## Subject
 
