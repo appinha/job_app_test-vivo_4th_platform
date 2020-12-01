@@ -1,10 +1,10 @@
 # Exercise 2
 
+*Exercise 1 algorithm transformed into an API RESTful.*
+
 ## Subject
 
-	"Transforme o algoritmo anterior em uma API Rest. Você receberá como
-	parâmetro uma lista com os valores de An e deverá retornar a saída do
-	algoritmo no formato JSON."
+> "Transforme o algoritmo anterior em uma API Rest. Você receberá como parâmetro uma lista com os valores de An e deverá retornar a saída do algoritmo no formato JSON."
 
 ## Contents
 
@@ -31,13 +31,13 @@ After cloning this repository, `cd` to `ex2` directory and follow the instructio
 ```
 $ source activate.sh
 ```
-*Note: if the virtual environment is not yet set, you'll be prompted to install/update `python3-venv` and a `venv` directory will be created.*
+> ***Note:** if the virtual environment is not yet set, you'll be prompted to install/update `python3-venv` and a `venv` directory will be created.*
 
 **2. Once inside `venv`, to start the application, run:**
 ```
 (venv) $ source run.sh
 ```
-*Note: when running the virtual environment for the first time, you'll be prompted to install all necessary packages to run the application.*
+> ***Note:** when running the virtual environment for the first time, you'll be prompted to install all necessary packages to run the application.*
 
 ![Screenshot of output on shell](screenshots/shell-activate_run.png)
 
@@ -47,18 +47,18 @@ $ source activate.sh
 	"list": [1, 2, 3]
 }
 ```
-*Note: the application only accepts values within the range 0 <= value <= 15.*
+> ***Note:** the application only accepts values within the range 0 <= value <= 15.*
 
 **4. To input this list to the application, in another shell window, run:**
 ```
 $ sh post.sh
 ```
 
-*The result will be printed on stdout in JSON format (see image bellow).*
+> *The result will be printed on stdout in JSON format (see image bellow).*
 
 ![Screenshot of step's output on shell](screenshots/shell-post.png)
 
-*Note: you can use other ways of posting the `list.json` file, such as Postman, to get the application's result.*
+> ***Note:** you can use other ways of posting the `list.json` file, such as Postman, to get the application's result.*
 
 **5. To kill the application, press `ctrl+C`.**
 
