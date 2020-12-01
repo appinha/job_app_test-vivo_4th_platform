@@ -54,7 +54,11 @@ $ source activate.sh
 $ sh post.sh
 ```
 
+*The result will be printed on stdout in JSON format (see image bellow).*
+
 ![Screenshot of step's output on shell](screenshots/shell-post.png)
+
+*Note: you can use other ways of posting the `list.json` file, such as Postman, to get the application's result.*
 
 **5. To kill the application, press `ctrl+C`.**
 
