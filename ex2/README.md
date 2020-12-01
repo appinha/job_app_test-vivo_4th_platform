@@ -15,7 +15,15 @@
 * [post.sh](post.sh) - shell script to POST `list.json` to the application.
 * [requirements.txt](requirements.txt) - list of all necessary packages to run the application.
 
-## How to run
+## Usage
+
+### Requirements
+
+This application is intended for use in **Linux** based systems with `python3` installed.
+
+All packages listed in [requirements.txt](requirements.txt) will be installed upon running the application as instructed below.
+
+### Instructions
 
 After cloning this repository, `cd` to `ex2` directory and follow the instructions bellow.
 
@@ -31,7 +39,9 @@ $ source activate.sh
 ```
 *Note: when running the virtual environment for the first time, you'll be prompted to install all necessary packages to run the application.*
 
-**3. Edit the list values in `list.json` as you like.**
+![Screenshot of output on shell](screenshots/shell-activate_run.png)
+
+**3. Edit the list values (inside square brackets) in `list.json` as you like.**
 ```
 {
 	"list": [1, 2, 3]
@@ -39,82 +49,16 @@ $ source activate.sh
 ```
 *Note: the application only accepts values within the range 0 <= value <= 15.*
 
-**4. To input this list to the application, in another shell window run:**
+**4. To input this list to the application, in another shell window, run:**
 ```
 $ sh post.sh
 ```
 
-**5. To kill the application press `ctrl+C` and to deactivate the virtual environment, run:**
+![Screenshot of step's output on shell](screenshots/shell-post.png)
+
+**5. To kill the application, press `ctrl+C`.**
+
+**6. To deactivate the virtual environment, run:**
 ```
 (venv) $ deactivate
 ```
-
----
-
-## Study reference
-
-### Virtual Environment
-
-**1. Install venv**
-```
-$ sudo apt install python3-venv
-```
-
-**2. Create new virtual environment** - creates `venv\`
-```
-$ cd my_flask_app
-$ python3 -m venv venv
-```
-
-**3. Activate virtual environment** - `(venv) $` is shown in shell's prompt
-```
-$ source venv/bin/activate
-```
-
-**4. Deactivate virtual environment**
-```
-(venv) $ deactivate
-```
-
-### Numpy
-
-**1. Installing Numpy**
-```
-(venv) $ pip install numpy
-```
-
-### Flask
-
-**1. Installing Flask and packages**
-```
-(venv) $ pip install Flask
-(venv) $ pip install flask-restful
-```
-
-*Note: Within the virtual environment, you can use the command pip instead of pip3 and python instead of python3.*
-
-**2. Verify the installation**
-```
-(venv) $ python3 -m flask --version
-```
-
-**3. Run the application**
-```
-(venv) $ export FLASK_APP=app.py
-(venv) $ flask run
-```
-
-*Note: for Debug mode to be activated, run the following instead:*
-```
-(venv) $ export FLASK_ENV=development
-(venv) $ export FLASK_APP=app.py
-(venv) $ flask run
-```
-
-### Useful links
-
-* [Flask installation - from documentation](https://flask.palletsprojects.com/en/1.1.x/installation/)
-* [Flask installation - tutorial](https://linuxize.com/post/how-to-install-flask-on-ubuntu-18-04/)
-* [Flask-RESTful documentation](https://flask-restful.readthedocs.io/en/latest/)
-* [How do you POST a JSON file with curl??](https://gist.github.com/ungoldman/11282441)
-* [RESTful-Flask parsing JSON Arrays with parse_args()](https://stackoverflow.com/questions/45613160/restful-flask-parsing-json-arrays-with-parse-args)
