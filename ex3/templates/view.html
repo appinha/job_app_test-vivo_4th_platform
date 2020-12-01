@@ -1,36 +1,36 @@
 <!doctype html>
 <title>Resultados da 1ª Corrida de Super-Heróis</title>
 <style>
-	body			{ font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
-	a, h1, h2		{ color: #377ba8; }
-	h1, h2			{ margin: 0; }
-	h1				{ border-bottom: 2px solid #eee; }
-	h2				{ font-size: 1.2em; }
+	body	{ font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
+	a, h1	{ color: #377ba8; }
+	h1		{ margin: 60px 0 30px; }
+	h2		{ margin: 40px 0 20px; font-size: 1.4em; color: #8069f3;}
 
 	table.dataframe, .dataframe th, .dataframe td {
 		border: none;
 		border-bottom: 1px solid #C8C8C8;
 		border-collapse: collapse;
-		text-align:left;
+		text-align:center;
 		padding: 10px;
 		margin-bottom: 40px;
 		font-size: 0.9em;
 	}
 
 	.results th {
-		background-color: #add8e6;
+		background-color: #2da4cc;
 		color: white;
 	}
 
 	tr:nth-child(odd)	{ background-color:#eee; }
 	tr:nth-child(even)	{ background-color:#fff; }
-
-	tr:hover			{ background-color: #ffff99;}
+	tr:hover			{ background-color: #d1c8ff;}
 </style>
 <div class=page>
-	<h1>Resultados da 1ª Corrida de Super-Heróis</h1>
-	{% for table in tables %}
-		<h2>{{titles[loop.index]}}</h2>
-		{{ table|safe }}
-	{% endfor %}
+	<center>
+		<h1>Resultados da 1ª Corrida de Super-Heróis</h1>
+		{% for table in tables %}
+			<h2>{{titles[loop.index]}}</h2>
+			{{ table|safe }}
+		{% endfor %}
+	</center>
 </div>

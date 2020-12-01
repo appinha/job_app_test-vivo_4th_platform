@@ -2,15 +2,32 @@ import pandas as pd
 import numpy as np
 from datetime import timedelta
 
+
+# Function to convert string with time to in float representing seconds
+def time_sum(lst):
+	'''
+		This function takes in a string with time in format M:S.MS and converts
+		it to a float in format S.MS.
+		The return is the converted time in float.
+	'''
+	mins, secs = map(float, lst.split(':'))
+	td = timedelta(minutes=mins, seconds=secs)
+	return td.total_seconds()
+
+
 def get_race_res(log_file):
+	'''
+		This function takes in a file with a race log and calculate its results.
+		The returns are 2 dataframes: general race results and best race lap.
+	'''
 
 	# Read log file and put it into pandas dataframe
 	df_log = pd.read_csv(log_file, delimiter=';')
 
-	# List all unique super-hero codes and names
+	# List all unique super-hero code-name
 	code_name_unique = df_log['Super-Heroi'].unique()
 
-	# Split code_name_unique into two (to separate code from name)
+	# Split code-name (to separate code from name)
 	code_unique = []
 	name_unique = []
 	for unique in code_name_unique:
@@ -18,20 +35,14 @@ def get_race_res(log_file):
 		code_unique.append(a)
 		name_unique.append(b)
 
-	# Function to convert string with time to in float representing seconds
-	def time_sum(lst):
-		mins, secs = map(float, lst.split(':'))
-		td = timedelta(minutes=mins, seconds=secs)
-		return td.total_seconds()
-
 	# Get total race time and best lap time for each super-hero
 	total_race_time = []
 	best_lap_time = []
 	best_lap_time_nbr = []
 	for code in code_name_unique:
-		# Filter dataframe per super-hero code (row) and lap time (column)
+		# Filter dataframe rows per super-hero in lap time column
 		df_filt_time = df_log['Tempo Volta'].loc[df_log['Super-Heroi'] == code]
-		# Convert string with time to seconds in float
+		# Convert time (in string) to seconds (in float)
 		df_filt_time = df_filt_time.apply(time_sum)
 		# Find best lap time (bonus)
 		best_lap_time.append(df_filt_time.min())
@@ -61,7 +72,7 @@ def get_race_res(log_file):
 	df_counts = df_log['Super-Heroi'].value_counts()
 
 	# Create index with unique super-hero codes for race results dataframe
-	idx = pd.Index(code_name_unique, name='ID')
+	idx = pd.Index(code_name_unique)
 
 	# Create dict with calculated race results
 	data = {'Codigo': code_unique, \
@@ -75,20 +86,24 @@ def get_race_res(log_file):
 	# Unite index and data dict to create race results dataframe
 	df_res = pd.DataFrame(data, index=idx)
 
+	# Get dataframe columns for reordering it later
+	cols = list(df_res.columns.values)
+	cols.insert(0, 'Posição Chegada')
+
 	# Sort dataframe by position
 	df_res = df_res.sort_values(by=['Tempo Total (s)'])
 
-	# Add column for finishing position
-	df_res['Posicao Chegada'] = np.arange(1, len(code_name_unique) + 1)
+	# Add column for finishing position into sorted dataframe
+	df_res['Posição Chegada'] = np.arange(1, len(code_name_unique) + 1)
+
+	# Reorder dataframe columns
+	df_res = df_res[cols]
 
 	# Populate dict with info of best lap time in race
-	# Info: super-hero code, name and best lap time
-	best_lap = {
-		'Codigo': [df_res['Codigo'].loc[df_res['Super-Heroi'] == best_lap_time_all_name].item()], \
-		'Super-Heroi': [best_lap_time_all_name], \
-		'Tempo (s)': [df_res['Tempo Melhor Volta (s)'].loc[df_res['Super-Heroi'] == best_lap_time_all_name].item()]
-	}
-	df_best_lap = pd.DataFrame(best_lap)
-	df_best_lap = df_best_lap.set_index('Codigo')
+	bl_index = (df_res['Codigo'].loc[df_res['Super-Heroi'] == best_lap_time_all_name].index[0])
+	best_lap = {'Tempo Melhor Volta (s)': \
+		[df_res['Tempo Melhor Volta (s)'].loc[df_res['Super-Heroi'] == \
+			best_lap_time_all_name].item()]}
+	df_best_lap = pd.DataFrame(best_lap, index=[bl_index])
 
 	return df_res, df_best_lap

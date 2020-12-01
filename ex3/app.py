@@ -6,6 +6,7 @@ from parse_log import get_race_res
 # Instantiate a Flask object (the application)
 app = Flask(__name__)
 
+
 def get_race_res_json(file):
 	'''
 		This function gets race results from log file, then converts it to JSON.
@@ -17,6 +18,7 @@ def get_race_res_json(file):
 	json_race_res = json.loads(df_res.to_json(orient="split"))
 	json_best_lap = json.loads(df_best_lap.to_json(orient="split"))
 	return json_race_res, json_best_lap
+
 
 # Endpoint for posting API's log input
 @app.route('/post', methods=['POST'])
@@ -40,7 +42,8 @@ def show_results():
 	df_res, df_best_lap = get_race_res("corrida.log")
 	return render_template('view.html', \
 		tables=[df_res.to_html(classes='results'), \
-		df_best_lap.to_html(classes='results')], titles=[])
+		df_best_lap.to_html(classes='results')], \
+			titles=['na', 'Resultados Gerais', 'Melhor Volta da Corrida'])
 
 
 if __name__ == '__main__':
