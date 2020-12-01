@@ -88,13 +88,13 @@ def get_race_res(log_file):
 
 	# Get dataframe columns for reordering it later
 	cols = list(df_res.columns.values)
-	cols.insert(0, 'Posição Chegada')
+	cols.insert(0, 'Posicao Chegada')
 
 	# Sort dataframe by position
 	df_res = df_res.sort_values(by=['Tempo Total (s)'])
 
 	# Add column for finishing position into sorted dataframe
-	df_res['Posição Chegada'] = np.arange(1, len(code_name_unique) + 1)
+	df_res['Posicao Chegada'] = np.arange(1, len(code_name_unique) + 1)
 
 	# Reorder dataframe columns
 	df_res = df_res[cols]
