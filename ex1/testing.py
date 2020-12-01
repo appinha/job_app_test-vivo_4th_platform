@@ -1,6 +1,27 @@
 from termcolor import colored
 import numpy as np
-from solution import *
+from solution import count_arr_in_matrix
+
+
+### TO CHANGE TESTING PARAMETERS, EDIT VARIABLE VALUES BELLOW
+
+## CORRECT INPUT TESTING
+# 1D array length
+a = 3
+# Range of matrix dimensions (MxN)
+d_low = 2
+d_high = 5
+
+## INCORRECT INPUT TESTING
+# 1D array length
+i_a = 3
+# Range of arrays' elements
+i_low = 16
+i_high = 20
+# Range of matrix dimensions (MxN)
+i_d_low = 2
+i_d_high = 4
+
 
 
 def test(i, M, N, a, low, high, v=False):
@@ -22,47 +43,54 @@ def test(i, M, N, a, low, high, v=False):
 	'''
 	random_array = np.random.randint(low, high, (1, a))
 	random_matrix = np.random.randint(low, high, (M, N))
-	control_array = np.arange(high - low)
+	control_array = np.arange(low, high)
 	control_res = count_arr_in_matrix(control_array, random_matrix)
-	s = "Test {:>2}:".format(i)
+	title = "Test {:>2}:".format(i)
 
 	if control_res:
 		control_sum = sum(list(map(int, control_res.split(', '))))
 		if control_sum == random_matrix.size:
-			print(colored(s, 'green'), "passed")
+			print(colored(title, 'green'), "passed")
 		else:
-			print(colored(s, 'red'), "failed")
+			print(colored(title, 'red'), "failed")
 	else:
-		print(colored(s, 'red'), "invalid input")
+		print(colored(title, 'red'), "invalid input")
 
 	if v:
-		print(colored(" • Inputs:", 'blue'))
+		print(colored(" • Inputs:", 'blue'), "matrix,", colored("array", 'cyan'))
 		print(random_matrix)
-		print(random_array[0])
+		print(colored(random_array[0], 'cyan'))
 		print(colored(" • Answer:", 'blue'), count_arr_in_matrix(
 				random_array[0], random_matrix))
 		if control_sum:
 			print(colored(" • Control:", 'yellow'),
-					"{} vs {} (sum of counts vs qty of matrix elements)\n\
+					"{} vs {}\n   (sum of counts vs qty of matrix elements)\
 					".format(control_sum, random_matrix.size))
 
+
+# Testing numbering
+i = 1
+# Range - correct input
 low = 0
 high = 16
-a = 3
-i = 1
 
 # Verbose testing with correct input
-test(i, 2, 5, a, low, high, v=True)
+print(colored("\n--- Correct input testing - verbose mode ---", 'magenta'))
+test(i, 3, 5, 5, low, high, v=True)
 i += 1
 
 # Correct input testing
-for N in range (2, 5):
-	for M in range (2,5):
+print(colored("\n--- Correct input testing ---", 'magenta'))
+for N in range (d_low, d_high):
+	for M in range (d_low, d_high):
 		test(i, M, N, a, low, high)
 		i += 1
 
 # Incorrect input testing
-for N in range (2, 4):
-	for M in range (2,4):
-		test(i, 2, 5, a, 16, 20)
+print(colored("\n--- Incorrect input testing ---", 'magenta'))
+for N in range (i_d_low, i_d_high):
+	for M in range (i_d_low, i_d_high):
+		test(i, M, N, i_a, i_low, i_high)
 		i += 1
+
+print("")
