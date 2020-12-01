@@ -3,17 +3,19 @@
 ## Subject
 
 	"Dado o seguinte log da primeira corrida de Super-Heróis – Volta ao Mundo.
+
 	(arquivo corrida.log)
+
 	Desenvolva uma API que leia o arquivo de log acima e retorne as seguintes
 	informações:
 	Posição de Chegada, Código do Super-herói, Nome Super-herói, Quantidade de
 	Voltas Completadas e Tempo Total de Prova.
 
-	Observações
+	**Observações**
 	• A primeira linha do arquivo pode ser desconsiderada (Cabeçalho).
 	• A corrida termina quando o primeiro colocado completa 4 voltas.
 
-	Bônus
+	**Bônus**
 	1. Descobrir a melhor volta de cada super-herói.
 	2. Descobrir a melhor volta da corrida.
 	3. Calcular a velocidade média de cada super-herói durante toda a corrida."
@@ -27,7 +29,15 @@
 * [post.sh](post.sh) - shell script to POST `corrida.log` to the application.
 * [requirements.txt](requirements.txt) - list of all necessary packages to run the application.
 
-## How to run
+## Usage
+
+### Requirements
+
+This application is intended for use in **Linux** based systems with `python3` installed.
+
+All packages listed in [requirements.txt](requirements.txt) will be installed upon running the application as instructed below.
+
+### Instructions
 
 After cloning this repository, `cd` to `ex3` directory and follow the instructions bellow.
 
@@ -43,12 +53,22 @@ $ source activate.sh
 ```
 *Note: when running the virtual environment for the first time, you'll be prompted to install all necessary packages to run the application.*
 
-**3. To input the log file to the application, in another shell window run:**
+![Screenshot of steps' output on shell](screenshots/shell-activate_run.png)
+
+**3. To input the log file to the application, in another shell window, run:**
 ```
 $ sh post.sh
 ```
 
-**4. To kill the application press `ctrl+C` and to deactivate the virtual environment, run:**
+![Screenshot of step's output on shell](screenshots/shell-post.png)
+
+**4. To see the application's result on a web browser, access `http://localhost:5000/`**
+
+![Screenshot of step's output on browser](screenshots/browser.png)
+
+**4. To kill the application, press `ctrl+C`.**
+
+**5. To deactivate the virtual environment, run:**
 ```
 (venv) $ deactivate
 ```
