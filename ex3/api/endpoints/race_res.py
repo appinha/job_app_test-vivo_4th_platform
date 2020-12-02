@@ -27,7 +27,6 @@ class ShowResults(Resource):
 			This function gets race results from log file, then converts it to JSON.
 			The result dataframes are then rendered as HTML tables.
 		'''
-		headers = {'Content-Type': 'html'}
 		df_res, df_best_lap = get_race_res("corrida.log")
 		return make_response(render_template('view.html', \
 			tables=[df_res.to_html(classes='results'), \
