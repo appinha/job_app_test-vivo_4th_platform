@@ -1,1 +1,1 @@
-curl -X POST -F file=@"corrida.log" http://localhost:5000/post
+curl -X POST -F file=@"corrida.log" http://localhost:5000/results/post

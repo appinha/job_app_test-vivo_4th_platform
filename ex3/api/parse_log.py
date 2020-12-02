@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import json
 from datetime import timedelta
 
 
@@ -107,3 +108,16 @@ def get_race_res(log_file):
 	df_best_lap = pd.DataFrame(best_lap, index=[bl_index])
 
 	return df_res, df_best_lap
+
+
+def get_race_res_json(file):
+	'''
+		This function gets race results from log file, then converts it to JSON.
+		The return is JSON-like dicts of the dataframes containing the results.
+	'''
+	# Get race results
+	df_res, df_best_lap = get_race_res(file)
+	# Convert dataframes to JSONlike dicts
+	json_race_res = json.loads(df_res.to_json(orient="split"))
+	json_best_lap = json.loads(df_best_lap.to_json(orient="split"))
+	return json_race_res, json_best_lap
