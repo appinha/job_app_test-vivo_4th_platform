@@ -70,7 +70,7 @@ $ source venv/bin/activate
 (venv) $ pip install flask-restful
 ```
 
-*Note: Within the virtual environment, you can use the command pip instead of pip3 and python instead of python3.*
+> ***Note:** within the virtual environment, you can use the command pip instead of pip3 and python instead of python3.*
 
 **2. Verify the installation**
 ```
@@ -83,11 +83,18 @@ $ source venv/bin/activate
 (venv) $ flask run
 ```
 
-*Note: for Debug mode to be activated, run the following instead:*
+> ***Note:** for Debug mode to be activated, run the following instead:*
 ```
 (venv) $ export FLASK_ENV=development
 (venv) $ export FLASK_APP=app.py
 (venv) $ flask run
+```
+
+### Unit tests
+
+**Installing Pytest and Coverage:**
+```
+(venv) $ pip install pytest coverage pytest-cov
 ```
 
 ### Useful links
@@ -95,6 +102,10 @@ $ source venv/bin/activate
 * [Flask installation - from documentation](https://flask.palletsprojects.com/en/1.1.x/installation/)
 * [Flask installation - tutorial](https://linuxize.com/post/how-to-install-flask-on-ubuntu-18-04/)
 * [Flask-RESTful documentation](https://flask-restful.readthedocs.io/en/latest/)
+* [Flask RESTplus Tutorial (studies-diary)](https://medium.com/trainingcenter/flask-restplus-ea942ec30555)
 * [How do you POST a JSON file with curl??](https://gist.github.com/ungoldman/11282441)
 * [RESTful-Flask parsing JSON Arrays with parse_args()](https://stackoverflow.com/questions/45613160/restful-flask-parsing-json-arrays-with-parse-args)
 * [Pandas - convert minutes to second](https://stackoverflow.com/questions/50308629/python-pandas-column-convert-minutes-to-second)
+* [TDD com Flask e Unittest](https://medium.com/@otaviobn/tdd-com-flask-e-unittest-3f66036a240b)
+* [Flask documentation - Testing Flask Applications](https://flask.palletsprojects.com/en/1.1.x/testing/)
+* [Flask documentation - Handling Application Errors](https://flask.palletsprojects.com/en/master/errorhandling/)

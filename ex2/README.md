@@ -29,7 +29,7 @@ All packages listed in [requirements.txt](requirements.txt) will be installed up
 After cloning this repository, `cd` to `ex2` directory and follow the instructions bellow.
 
 **1. To start the application (inside virtual environment), run:**
-```
+```shell
 $ source run.sh
 ```
 
@@ -40,7 +40,7 @@ $ source run.sh
 > * *when running the virtual environment for the first time, you'll be prompted to install all necessary packages to run the application.*
 
 **2. Edit the list values (inside square brackets) in `list.json` as you like.**
-```
+```json
 {
 	"list": [1, 2, 3]
 }
@@ -48,7 +48,7 @@ $ source run.sh
 > ***Note:** the application only accepts values within the range 0 <= value <= 15.*
 
 **3. To input this list to the application, in another shell window, run:**
-```
+```shell
 $ sh post.sh
 ```
 
@@ -61,6 +61,6 @@ $ sh post.sh
 **4. To kill the application, press `ctrl+C`.**
 
 **5. To deactivate the virtual environment, run:**
-```
+```shell
 (venv) $ deactivate
 ```

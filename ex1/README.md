@@ -22,31 +22,31 @@ Required packages for running the code are listed in [requirements.txt](requirem
 
 ### Instructions
 
-#### Using the function
-
 After cloning this repository and copying `solution.py` into your code directory, follow the instructions bellow.
 
 **1. Import `solution.py` into your code:**
-```
+```python
 from solution import count_arr_in_matrix
 ```
 
 **2. Call `count_arr_in_matrix()` giving a 1D ndarray\* and a 2D ndarray\* as input arguments:**
-```
+```python
 res = count_arr_in_matrix(array, matrix)
 ```
+
 > *\* ndarray: a numpy array instance, which can be instantiated (created) like:*
-```
+
+```python
 arr_1d = np.array([1, 2, 3, 4, 5])
 arr_2d = np.array([1, 2, 3, 4, 5], [5, 4, 3, 2, 1])
 ```
 
-#### Testing
+## Testing
 
 After cloning this repository, `cd` to `ex1` directory and follow the instructions bellow.
 
 **1. For testing, run:**
-```
+```shell
 $ python3 testing.py
 ```
 > ***Note:** the test output will be printed on stdout (see image below)*
