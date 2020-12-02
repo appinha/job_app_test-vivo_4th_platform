@@ -24,8 +24,10 @@
 
 ## Contents
 
-* [activate.sh](activate.sh) - shell script to set and/or activate the virtual environment.
-* [run.sh](run.sh) - shell script to run the application.
+* [run.sh](run.sh) - shell script to start the application.
+* [run/activate.sh](activate.sh) - shell script to set and/or activate the virtual environment.
+* [run/run_app.sh](run/run_app.sh) - shell script to check/install all required packages and run the application.
+* [parse_log.py](parse_log.py) - source code for parsing race log and calculate its results.
 * [app.py](app.py) - application's source code.
 * [corrida.log](corrida.log) - log file to be used as input in the application.
 * [post.sh](post.sh) - shell script to POST `corrida.log` to the application.
@@ -43,9 +45,9 @@ All packages listed in [requirements.txt](requirements.txt) will be installed up
 
 After cloning this repository, `cd` to `ex3` directory and follow the instructions bellow.
 
-**1. To set and/or activate the virtual environment and then start the application, run:**
+**1. To start the application (inside virtual environment), run:**
 ```
-$ source activate.sh && source run.sh
+$ source run.sh
 ```
 
 ![Screenshot of steps' output on shell](screenshots/shell-activate_run.png)
