@@ -39,7 +39,7 @@ def test(i, M, N, a, low, high, v=False):
 		which should be equal if function works correctly.
 
 		There is no return value, the test result is simply printed in stdout.
-		Possible test results: "passed", "failed" and "invalid input".
+		Possible test results: "passed" and "failed".
 	'''
 	random_array = np.random.randint(low, high, (1, a))
 	random_matrix = np.random.randint(low, high, (M, N))
@@ -53,8 +53,6 @@ def test(i, M, N, a, low, high, v=False):
 			print(colored(title, 'green'), "passed")
 		else:
 			print(colored(title, 'red'), "failed")
-	else:
-		print(colored(title, 'red'), "invalid input")
 
 	if v:
 		print(colored(" • Inputs:", 'blue'), "matrix,", colored("array", 'cyan'))
