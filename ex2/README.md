@@ -27,21 +27,18 @@ All packages listed in [requirements.txt](requirements.txt) will be installed up
 
 After cloning this repository, `cd` to `ex2` directory and follow the instructions bellow.
 
-**1. To set and/or activate the virtual environment, run:**
+**1. To set and/or activate the virtual environment and then start the application, run:**
 ```
-$ source activate.sh
+$ source activate.sh && source run.sh
 ```
-> ***Note:** if the virtual environment is not yet set, you'll be prompted to install/update `python3-venv` and a `venv` directory will be created.*
-
-**2. Once inside `venv`, to start the application, run:**
-```
-(venv) $ source run.sh
-```
-> ***Note:** when running the virtual environment for the first time, you'll be prompted to install all necessary packages to run the application.*
 
 ![Screenshot of output on shell](screenshots/shell-activate_run.png)
 
-**3. Edit the list values (inside square brackets) in `list.json` as you like.**
+> ***Note:***
+> * *if the virtual environment is not yet set, you'll be prompted to install/update `python3-venv` and a `venv` directory will be created.*
+> * *when running the virtual environment for the first time, you'll be prompted to install all necessary packages to run the application.*
+
+**2. Edit the list values (inside square brackets) in `list.json` as you like.**
 ```
 {
 	"list": [1, 2, 3]
@@ -49,20 +46,20 @@ $ source activate.sh
 ```
 > ***Note:** the application only accepts values within the range 0 <= value <= 15.*
 
-**4. To input this list to the application, in another shell window, run:**
+**3. To input this list to the application, in another shell window, run:**
 ```
 $ sh post.sh
 ```
 
-> *The result will be printed on stdout in JSON format (see image bellow).*
+*The result will be printed on stdout in JSON format (see image bellow).*
 
 ![Screenshot of step's output on shell](screenshots/shell-post.png)
 
 > ***Note:** you can use other ways of posting the `list.json` file, such as Postman, to get the application's result.*
 
-**5. To kill the application, press `ctrl+C`.**
+**4. To kill the application, press `ctrl+C`.**
 
-**6. To deactivate the virtual environment, run:**
+**5. To deactivate the virtual environment, run:**
 ```
 (venv) $ deactivate
 ```

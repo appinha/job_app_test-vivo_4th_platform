@@ -1,8 +1,8 @@
 # Job application test - Vivo's 4th platform
 
-This repository contains coding developed for Vivo's 4th Platform\* job application.
+This repository contains coding developed for *Vivo's 4th Platform\** job application.
 
-**Python** was the programming language chosen to solve the test.
+🐍 **Python** was the programming language chosen to solve the test.
 
 *\* To learn more about [Vivo's 4th Platform](https://www.telefonica.com/en/web/press-office/-/telefonica-presents-aura-a-pioneering-way-in-the-industry-to-interact-with-customers-based-on-cognitive-intelligence).*
 
@@ -16,10 +16,10 @@ This repository contains coding developed for Vivo's 4th Platform\* job applicat
 ![GitHub top language](https://img.shields.io/github/languages/top/appinha/job_app_test-vivo_4th_platform?color=blue)
 ![GitHub last commit](https://img.shields.io/github/last-commit/appinha/job_app_test-vivo_4th_platform)
 
-* [Test subject (PDF)](prova_desenvolvedores_4p.pdf)
-* [Exercice 1](ex1/) - an algorithm that counts how many times each element in a given array occurs in a given matrix.
-* [Exercice 2](ex2/) - exercise 1 algorithm transformed into an API RESTful.
-* [Exercice 3](ex3/) - an API that reads a race log file and calculates race results.
+* 📄 [Test subject (PDF)](prova_desenvolvedores_4p.pdf)
+* 📁 [Exercice 1](ex1/) - an algorithm that counts how many times each element in a given array occurs in a given matrix.
+* 📁 [Exercice 2](ex2/) - exercise 1 algorithm transformed into an API RESTful.
+* 📁 [Exercice 3](ex3/) - an API that reads a race log file and calculates race results.
 
 ---
 
@@ -97,3 +97,4 @@ $ source venv/bin/activate
 * [Flask-RESTful documentation](https://flask-restful.readthedocs.io/en/latest/)
 * [How do you POST a JSON file with curl??](https://gist.github.com/ungoldman/11282441)
 * [RESTful-Flask parsing JSON Arrays with parse_args()](https://stackoverflow.com/questions/45613160/restful-flask-parsing-json-arrays-with-parse-args)
+* [Pandas - convert minutes to second](https://stackoverflow.com/questions/50308629/python-pandas-column-convert-minutes-to-second)

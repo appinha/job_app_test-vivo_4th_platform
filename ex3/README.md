@@ -43,34 +43,33 @@ All packages listed in [requirements.txt](requirements.txt) will be installed up
 
 After cloning this repository, `cd` to `ex3` directory and follow the instructions bellow.
 
-**1. To set and/or activate the virtual environment, run:**
+**1. To set and/or activate the virtual environment and then start the application, run:**
 ```
-$ source activate.sh
+$ source activate.sh && source run.sh
 ```
-> ***Note:** if the virtual environment is not yet set, you'll be prompted to install/update `python3-venv` and a `venv` directory will be created.*
-
-**2. Once inside `venv`, to start the application, run:**
-```
-(venv) $ source run.sh
-```
-> ***Note:** when running the virtual environment for the first time, you'll be prompted to install all necessary packages to run the application.*
 
 ![Screenshot of steps' output on shell](screenshots/shell-activate_run.png)
 
-**3. To input the log file to the application, in another shell window, run:**
+> ***Note:***
+> * *if the virtual environment is not yet set, you'll be prompted to install/update `python3-venv` and a `venv` directory will be created.*
+> * *when running the virtual environment for the first time, you'll be prompted to install all necessary packages to run the application.*
+
+**2. To input the log file to the application, in another shell window, run:**
 ```
 $ sh post.sh
 ```
 
 ![Screenshot of step's output on shell](screenshots/shell-post.png)
 
-**4. To see the application's result on a web browser, access `http://localhost:5000/`**
+> ***Note:** the application's return will be printed on stdout in JSON format.*
+
+💡 To see the application's result on a web browser, access `http://localhost:5000/` (see image below).
 
 ![Screenshot of step's output on browser](screenshots/browser.png)
 
-**4. To kill the application, press `ctrl+C`.**
+**3. To kill the application, press `ctrl+C`.**
 
-**5. To deactivate the virtual environment, run:**
+**4. To deactivate the virtual environment, run:**
 ```
 (venv) $ deactivate
 ```
