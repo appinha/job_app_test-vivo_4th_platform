@@ -10,4 +10,4 @@ while read line; do
 done < $requirements
 
 # Run Flask application
-PYTHONPATH=./ FLASK_ENV=development py ./api/app.py
+PYTHONPATH=./ FLASK_ENV=development python3 ./api/app.py
