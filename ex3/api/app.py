@@ -17,7 +17,7 @@ def initialize_app(app):
 
 def main():
 	initialize_app(app)
-	log.info('>>>>> Starting development server at http://{}/ <<<<<'.format(app.config['SERVER_NAME']))
+	log.info('>>> Starting development server <<<')
 	app.run(debug=True)
 
 
